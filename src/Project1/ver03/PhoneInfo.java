@@ -2,8 +2,6 @@ package Project1.ver03;
 
 import java.util.Scanner;
 
-
-
 /*
 객체배열을 이용해서, 프로그램 사용자가 입력하는 정보가 최대 100개까지 유지되도록 프로그램을 변경하시오.
 다음과 같은 기능을 추가로 삽입한다.
@@ -15,23 +13,24 @@ import java.util.Scanner;
 끝으로 저장, 검색, 삭제의 기능을 담당하는 PhoneBookManager클래스를 정의해서 프로그램을 완성하자.
 
 멤버메소드명 
-메뉴출력 : printMenu()
-입력 : dataInput()
-검색 : dataSearch()
+메뉴출력 : printMenu() -- Okay
+입력 : dataInput() -- Okay
+검색 : dataSearch() -- Okay.
 
 삭제 : dataDelete()
-주소록전체출력 : dataAllShow()
+주소록전체출력 : dataAllShow()  -- Okay
 
 */
-
 public class PhoneInfo {
-	Scanner sc = new Scanner(System.in);
-	public myPhone[];
-	
 	String name;
 	String phoneNumber;
 	String birthday;
 	
+	public PhoneInfo(String name, String phoneNumber, String birthday) {
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.birthday = birthday;
+	}
 	public String getName() {
 		return name;
 	}
@@ -51,38 +50,10 @@ public class PhoneInfo {
 		this.birthday = birthday;
 	}
 	
-	
-	public void printMenu() {
-		System.out.println("선택하세요..");
-		System.out.println("1.데이터입력");
-		System.out.println("2.데이터검색");
-		System.out.println("3.데이터삭제");
-		System.out.println("4.주소록출력");
-		System.out.println("5.프로그램종료");
-		
-		System.out.printf("선택: ");
-		int choice = sc.nextInt();
-		
-		if(choice == 1) {
-			dataInput();
-		}
-		
-	}
-	public void dataInput() {
-		System.out.printf("데이터 입력을 시작합니다.");
-		System.out.print("이름: "); 
-		name = sc.nextLine();
-		System.out.print("전화번호: ");
-		phoneNumber= sc.nextLine();
-		System.out.print("생년월일: "); 
-		birthday= sc.nextLine();
-		
-	}
-	public void dataSearch() {
-		
-	}
-	public void dataDelete() {
-		
+	public void showInfo() {
+		System.out.println("이름: "+ name);
+		System.out.println("전화번호: "+ phoneNumber);
+		System.out.println("생년월일: "+ birthday);
 	}
 
 }

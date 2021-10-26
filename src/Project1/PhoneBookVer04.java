@@ -1,9 +1,10 @@
 package Project1;
+
 import java.util.Scanner;
+import Project1.ver04.PhoneBookManager; 
 
-import Project1.ver03.PhoneBookManager;
+public class PhoneBookVer04 {
 
-public class PhonebookVer03 {
 	public static void printMenu() {
 		System.out.println("선택하세요..");
 		System.out.println("1.데이터입력");
@@ -48,5 +49,4 @@ public class PhonebookVer03 {
 		}
 		
 	}
-
 }

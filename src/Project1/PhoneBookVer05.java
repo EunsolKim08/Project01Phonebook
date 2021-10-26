@@ -1,9 +1,11 @@
 package Project1;
+
 import java.util.Scanner;
 
-import Project1.ver03.PhoneBookManager;
+import Project1.ver05.PhoneBookManager;
 
-public class PhonebookVer03 {
+public class PhoneBookVer05 {
+
 	public static void printMenu() {
 		System.out.println("선택하세요..");
 		System.out.println("1.데이터입력");
@@ -14,7 +16,6 @@ public class PhonebookVer03 {
 	}
 
 	public static void main(String[] args) {
-		
 		
 		PhoneBookManager mg = new PhoneBookManager(100);
 		Scanner sc = new Scanner(System.in);
@@ -43,6 +44,7 @@ public class PhonebookVer03 {
 				break;
 			}
 			default:
+				mg.programEnd();
 				return;
 			}
 		}
