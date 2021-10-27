@@ -80,7 +80,7 @@ public class PhoneInfo  {
 	public int hashCode() {
 		//학번으로 해쉬코드의 값을 비교한다.
 		int nameHashCode = name.hashCode();
-		System.out.println("nameHashCode = " + nameHashCode);
+		//System.out.println("nameHashCode = " + nameHashCode);
 		return nameHashCode;
 	}
 	/*
@@ -92,14 +92,12 @@ public class PhoneInfo  {
 		PhoneInfo pi = (PhoneInfo)obj;
 		HashSet<PhoneInfo> hashSet = new HashSet<PhoneInfo>(); 
 		
-		System.out.println("이미 저장된 데이터입니다.");
-		System.out.println("덮어쓸까요? Y(y)/N(n)");
-		
-		String an = sc.nextLine();
-				
-		if(an.equals("n")|| an.equals("N")) return true;	
+		if(pi.name.equals(this.name)) 
+			return true;
 		
 		return false;
+		
+		
 		
 	}
 }

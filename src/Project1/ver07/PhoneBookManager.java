@@ -8,7 +8,7 @@ public class PhoneBookManager{
 
 Scanner sc = new Scanner(System.in);
 	HashSet<PhoneInfo> hashSet = new HashSet<PhoneInfo>(); 
-	
+	HashSet<Object> pi1 = new HashSet<Object>();
 	int numOfPerson = 0;
 	
 	PhoneInfo per;
@@ -28,31 +28,59 @@ Scanner sc = new Scanner(System.in);
 		switch(choice) {
 		 case Manager.NORMAL:{
 			 System.out.print("이름: "); 
-			 String name1 = sc.nextLine();
+			 String name = sc.nextLine();
 			 System.out.print("전화번호: ");
 			 String phoneNumber= sc.nextLine();	
+			 per = new PhoneInfo(name,phoneNumber);
+			boolean j =  hashSet.add(per);
 			 
-			  per = new PhoneInfo(name1,phoneNumber);
-			 
-			  hashSet.add(per);
+			if(j == false) {
+				System.out.println("덮어쓸까요? Y(y) M(n)");
+				String ans = sc.nextLine();
+				if(ans.equals("y") || ans.equals("Y")) {
+					Iterator<PhoneInfo>it = hashSet.iterator();
+					while(it.hasNext()) {
+						PhoneInfo pi = it.next();
+						if(name.equals(pi.name)) {
+							hashSet.remove(pi);
+							hashSet.add(per);
+						}
+					}
+				}
+			}
 			 
 			System.out.println("데이터입력이 완료되었습니다.");
 			 break;
 		 }
-		 case Manager.SCHOOLMATE:
+		 case Manager.SCHOOLMATE: // 이상하게 딱 얘만 안됨..
 			 System.out.print("이름: "); 
-			 String name2 = sc.nextLine();
+			 String name = sc.nextLine();
 			 System.out.print("전화번호: ");
 			 String phoneNumber= sc.nextLine();
 			 System.out.print("전공: ");
 			 String major = sc.nextLine();
 			 System.out.print("학년: ");
 			 int grade= sc.nextInt();
+			 per = new PhoneSchoolInfo(name,phoneNumber,major,grade);
 			 
+			 boolean j =  hashSet.add(per);
 			 
-			 per = new PhoneSchoolInfo(name2,phoneNumber,major,grade);
+				if(j == false) {
+					System.out.println("덮어쓸까요? Y(y) M(n)");
+					String ans = sc.nextLine();
+					if(ans.equals("y") || ans.equals("Y")) {
+						Iterator<PhoneInfo>it = hashSet.iterator();
+						while(it.hasNext()) {
+							PhoneInfo pi = it.next();
+							if(name.equals(pi.name)) {
+								hashSet.remove(pi);
+								hashSet.add(per);
+							}
+						}
+					}
+				}
 			 
-			 hashSet.add(per);
+			
 			 System.out.println("데이터입력이 완료되었습니다.");
 			 break;
 		 
@@ -63,10 +91,23 @@ Scanner sc = new Scanner(System.in);
 			 String phoneNumber3= sc.nextLine();
 			 System.out.print("회사: ");
 			 String companyName = sc.nextLine();
-			
-			 
 			 per = new PhoneCompanyInfo(name3,phoneNumber3,companyName);
-			 hashSet.add(per);
+			   hashSet.add(per);
+			 
+				if(hashSet.add(per) == false) {
+					System.out.println("덮어쓸까요? Y(y) M(n)");
+					String ans = sc.nextLine();
+					if(ans.equals("y") || ans.equals("Y")) {
+						Iterator<PhoneInfo>it = hashSet.iterator();
+						while(it.hasNext()) {
+							PhoneInfo pi = it.next();
+							if(name3.equals(pi.name)) {
+								hashSet.remove(pi);
+								hashSet.add(per);
+							}
+						}
+					}
+				}
 			 System.out.println("데이터입력이 완료되었습니다.");
 			 
 			 break;
