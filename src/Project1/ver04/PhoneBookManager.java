@@ -16,11 +16,14 @@ Scanner sc = new Scanner(System.in);
 	}
 
 	public void dataInput() {
+		
 		int choice;
 		System.out.println("데이터 입력을 시작합니다.");
 		System.out.println("1.일반, 2.동창, 3.회사");
 		System.out.printf("선택>>");
-		choice = Integer.parseInt(sc.nextLine());
+		//choice = Integer.parseInt(sc.nextLine());
+		choice = sc.nextInt();
+		sc.nextLine();
 		switch(choice) {
 		 case 1:{
 			 System.out.print("이름: "); 
@@ -65,6 +68,7 @@ Scanner sc = new Scanner(System.in);
 	public void dataSearch() {
 		System.out.printf("검색할 이름을 입력하세요: ");
 		String findName = sc.nextLine();
+		sc.nextLine();
 		boolean isFind = false;
 		for(int i = 0; i<numOfPerson;i++) {
 			if(findName.equals(per[i].name)) {
@@ -81,6 +85,7 @@ Scanner sc = new Scanner(System.in);
 	public void dataDelete() {
 		System.out.println("삭제할 이름을 입력하세요: ");
 		String findName = sc.nextLine();
+		sc.nextLine();
 		int deleteIndex = -1;
 		
 		for(int i = 0; i< numOfPerson; i++) {

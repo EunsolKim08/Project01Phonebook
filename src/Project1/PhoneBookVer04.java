@@ -25,10 +25,11 @@ public class PhoneBookVer04 {
 			
 			System.out.printf("선택: ");
 			int choice = sc.nextInt();
+			sc.nextLine();
 			
 			switch(choice) {
 			case 1:{
-				mg. dataInput();
+				mg.dataInput();
 				break;
 			}
 			case 2:{

@@ -43,6 +43,7 @@ public class PhoneBookVer06 {
 			try {
 				System.out.printf("선택: ");
 				choice = sc.nextInt();
+				sc.nextLine();
 			
 				if(choice ==1){
 					mg. dataInput();

@@ -25,6 +25,7 @@ public class PhoneBookVer05 {
 			
 			System.out.printf("선택: ");
 			int choice = sc.nextInt();
+			sc.nextLine();
 			
 			switch(choice) {
 			case 1:{

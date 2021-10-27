@@ -15,19 +15,8 @@ import java.util.Scanner;
 	3.회사동료
  */
 
-interface Manager{
-	public abstract void dataInput();
-	public abstract void dataSearch();
-	public abstract void dataDelete();
-	public abstract void dataAllshow();
-	public abstract void programEnd();
-	
-	public static final int normal = 1;
-	public static final int schoolMate = 2;
-	public static final int company =3;
-}
 
-public class PhoneBookManager implements Manager{
+public class PhoneBookManager {
 
 Scanner sc = new Scanner(System.in);
 	
@@ -40,58 +29,60 @@ Scanner sc = new Scanner(System.in);
 		per = new PhoneInfo[num];
 	}
 
-	@Override
+
 	public void dataInput() {
-		int choice;
+		
 		System.out.println("데이터 입력을 시작합니다.");
 		System.out.println("1.일반, 2.동창, 3.회사");
 		System.out.printf("선택>>");
-		choice = Integer.parseInt(sc.nextLine());
+		int choice = sc.nextInt();
+		sc.nextLine();
 		switch(choice) {
-		 case normal:{
-			 System.out.print("이름: "); 
-			 String name = sc.nextLine();
-			 System.out.print("전화번호: ");
-			 String phoneNumber= sc.nextLine();
+		 case Manager.NORMAL:
+			System.out.print("이름: "); 
+			String name = sc.nextLine();
+			System.out.print("전화번호: ");
+			String phoneNumber= sc.nextLine();
 				
 			per[numOfPerson++] = new PhoneInfo(name,phoneNumber);
 			System.out.println("데이터입력이 완료되었습니다.");
-			 break;
-		 }
-		 case schoolMate:{
+			break;
+		 
+		 case Manager.SCHOOLMATE:
 			 System.out.print("이름: "); 
-			 String name = sc.nextLine();
+			 String name2 = sc.nextLine();
 			 System.out.print("전화번호: ");
-			 String phoneNumber= sc.nextLine();
+			 String phoneNum2= sc.nextLine();
 			 System.out.print("전공: ");
 			 String major = sc.nextLine();
 			 System.out.print("학년: ");
 			 int grade= sc.nextInt();
-			 per[numOfPerson++] = new PhoneSchoolInfo(name,phoneNumber,major,grade);
+			 per[numOfPerson++] = new PhoneSchoolInfo(name2,phoneNum2,major,grade);
 			 System.out.println("데이터입력이 완료되었습니다.");
 			 break;
-		 }
-		 case company:{
+		 
+		 case Manager.COMPANY:
 			 System.out.print("이름: "); 
-			 String name = sc.nextLine();
+			 String name3 = sc.nextLine();
 			 System.out.print("전화번호: ");
-			 String phoneNumber= sc.nextLine();
+			 String phoneNum3= sc.nextLine();
 			 System.out.print("회사: ");
 			 String companyName = sc.nextLine();
-			 per[numOfPerson++] = new PhoneCompanyInfo(name,phoneNumber,companyName);
+			 per[numOfPerson++] = new PhoneCompanyInfo(name3,phoneNum3,companyName);
 			 System.out.println("데이터입력이 완료되었습니다.");
 			 break;
-		 }
-		 default:{
+		 
+		 default:
 			 System.out.println("잘못입력하셨습니다.");
 			 return;
-		 }
+		 
 		}	
 	}
-	@Override
+	
 	public void dataSearch() {
 		System.out.printf("검색할 이름을 입력하세요: ");
 		String findName = sc.nextLine();
+		sc.nextLine();
 		boolean isFind = false;
 		for(int i = 0; i<numOfPerson;i++) {
 			if(findName.equals(per[i].name)) {
@@ -105,10 +96,11 @@ Scanner sc = new Scanner(System.in);
 		}
 		
 	}
-	@Override
+	
 	public void dataDelete() {
 		System.out.println("삭제할 이름을 입력하세요: ");
 		String findName = sc.nextLine();
+		sc.nextLine();
 		int deleteIndex = -1;
 		
 		for(int i = 0; i< numOfPerson; i++) {
@@ -128,7 +120,7 @@ Scanner sc = new Scanner(System.in);
 			System.out.println("데이터 "+ deleteIndex +"가 삭제되었습니다.");
 		}
 	}
-	@Override
+	
 	public void dataAllshow() {
 		
 		for(int i = 0; i <numOfPerson;i++) {
@@ -136,7 +128,7 @@ Scanner sc = new Scanner(System.in);
 		}
 		System.out.println("==전체 정보가 출력되었습니다==");
 	}
-	@Override
+	
 	public void programEnd() {
 		System.out.println("프로그램이 종료됩니다.");
 	}

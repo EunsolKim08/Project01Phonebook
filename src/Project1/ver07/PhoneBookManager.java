@@ -1,18 +1,18 @@
-package Project1.ver06;
+package Project1.ver07;
 import java.util.Scanner;
-
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 
 public class PhoneBookManager{
 
 Scanner sc = new Scanner(System.in);
-	
-	PhoneInfo[] per; 
+	HashSet<PhoneInfo> hashSet = new HashSet<PhoneInfo>(); 
 	
 	int numOfPerson = 0;
 	
-	
-	public PhoneBookManager(int num) {
-		per = new PhoneInfo[num];
+	PhoneInfo per;
+	public PhoneBookManager() {
 	}
 
 	
@@ -24,26 +24,27 @@ Scanner sc = new Scanner(System.in);
 		choice = sc.nextInt();
 		sc.nextLine();
 		switch(choice) {
-		 case Manager.NOMRAL:
+		 case Manager.NORMAL:{
+			 System.out.print("이름: "); 
+			 String name = sc.nextLine();
+			 System.out.print("전화번호: ");
+			 String phoneNumber= sc.nextLine();	
+			  per = new PhoneInfo(name,phoneNumber);
+			  hashSet.add(per);
+			System.out.println("데이터입력이 완료되었습니다.");
+			 break;
+		 }
+		 case Manager.SCHOOLMATE:
 			 System.out.print("이름: "); 
 			 String name = sc.nextLine();
 			 System.out.print("전화번호: ");
 			 String phoneNumber= sc.nextLine();
-				
-			per[numOfPerson++] = new PhoneInfo(name,phoneNumber);
-			System.out.println("데이터입력이 완료되었습니다.");
-			 break;
-		 
-		 case Manager.SCHOOLMATE:
-			 System.out.print("이름: "); 
-			 String name2 = sc.nextLine();
-			 System.out.print("전화번호: ");
-			 String phoneNumber2= sc.nextLine();
 			 System.out.print("전공: ");
 			 String major = sc.nextLine();
 			 System.out.print("학년: ");
 			 int grade= sc.nextInt();
-			 per[numOfPerson++] = new PhoneSchoolInfo(name2,phoneNumber2,major,grade);
+			 per = new PhoneSchoolInfo(name,phoneNumber,major,grade);
+			 hashSet.add(per);
 			 System.out.println("데이터입력이 완료되었습니다.");
 			 break;
 		 
@@ -54,8 +55,9 @@ Scanner sc = new Scanner(System.in);
 			 String phoneNumber3= sc.nextLine();
 			 System.out.print("회사: ");
 			 String companyName = sc.nextLine();
-			 per[numOfPerson++] = new PhoneCompanyInfo(name3,phoneNumber3,companyName);
+			 per = new PhoneCompanyInfo(name3,phoneNumber3,companyName);
 			 System.out.println("데이터입력이 완료되었습니다.");
+			 hashSet.add(per);
 			 break;
 		 
 		 default:
@@ -70,9 +72,9 @@ Scanner sc = new Scanner(System.in);
 		String findName = sc.nextLine();
 		sc.nextLine();
 		boolean isFind = false;
-		for(int i = 0; i<numOfPerson;i++) {
-			if(findName.equals(per[i].name)) {
-				per[i].showInfo();
+		for(int i = 0; i<hashSet.size();i++) {
+			if(findName.equals(per.name)) {
+				per.showInfo();
 				isFind = true;
 				System.out.println("데이터 검색이 완료되었습니다.");
 			}
@@ -82,16 +84,15 @@ Scanner sc = new Scanner(System.in);
 		}
 		
 	}
-
+	
 	public void dataDelete() {
 		System.out.println("삭제할 이름을 입력하세요: ");
 		String findName = sc.nextLine();
-		sc.nextLine();
 		int deleteIndex = -1;
-		
-		for(int i = 0; i< numOfPerson; i++) {
-			if(findName.equals(per[i].name)) {
-				per[i] = null;
+		/*
+		for(int i = 0; i< hashSet.size(); i++) {
+			if(findName.equals(per.name)) {
+			    per = null;
 				deleteIndex = i;
 				numOfPerson--;
 			}
@@ -100,21 +101,22 @@ Scanner sc = new Scanner(System.in);
 			System.out.println("삭제할 정보가 없습니다.");
 		}
 		else {
-			for(int i = deleteIndex; i<numOfPerson;i++) {
+			for(int i = deleteIndex; i<hashSet.size();i++) {
 				per[i] = per[i+1];
 			}
 			System.out.println("데이터 "+ deleteIndex +"가 삭제되었습니다.");
+		}*/
+	}
+
+	public void dataAllshow() {	
+		Iterator<PhoneInfo>it = hashSet.iterator();
+
+		while(it.hasNext()){
+			PhoneInfo pi = it.next();
+			pi.showInfo();
 		}
 	}
-	
-	public void dataAllshow() {
-		
-		for(int i = 0; i <numOfPerson;i++) {
-			per[i].showInfo();
-		}
-		System.out.println("==전체 정보가 출력되었습니다==");
-	}
-	
+
 	public void programEnd() {
 		System.out.println("프로그램이 종료됩니다.");
 	}
