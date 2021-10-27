@@ -92,20 +92,12 @@ public class PhoneInfo  {
 		PhoneInfo pi = (PhoneInfo)obj;
 		HashSet<PhoneInfo> hashSet = new HashSet<PhoneInfo>(); 
 		
-		//학번에 대한 비교를 진행
-		if(pi.name.equals(this.name)) {
-			System.out.println("이미 저장된 데이터입니다.");
-			System.out.println("덮어쓸까요? Y(y)/N(n)");
-			//String an = sc.nextLine();
-			String an = sc.nextLine();
-			
-			if(an.equals("n")|| an.equals("N")) return true;
-			if(an.equals("y")|| an.equals("Y"))	{
+		System.out.println("이미 저장된 데이터입니다.");
+		System.out.println("덮어쓸까요? Y(y)/N(n)");
+		
+		String an = sc.nextLine();
 				
-				return false;
-				}
-			}
-				
+		if(an.equals("n")|| an.equals("N")) return true;	
 		
 		return false;
 		
