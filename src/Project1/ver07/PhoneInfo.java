@@ -1,4 +1,7 @@
 package Project1.ver07;
+
+import java.util.Scanner;
+
 /*
  동명이인이 있다고 가정했을때 3단계에서 진행한 배열을 이용해서는 구조적으로 중복을 막을수 없다. 
  이번에는 중복 저장을 허용하지 않는 HashSet<E> 클래스를 대상으로 저장이 되도록 해보자. 
@@ -44,7 +47,7 @@ class PhoneCompanyInfo extends PhoneInfo{
 public class PhoneInfo  {
 	String name;
 	String phoneNumber;
-
+	Scanner sc = new Scanner(System.in);
 	
 	public PhoneInfo(String name, String phoneNumber) {
 		this.name = name;
@@ -83,14 +86,20 @@ public class PhoneInfo  {
 	 */
 	@Override
 	public boolean equals(Object obj) {
+		
 		PhoneInfo pi = (PhoneInfo)obj;
-		System.out.println("equals() 메서드 호출됨");
+	
 		//학번에 대한 비교를 진행
 		if(pi.name.equals(this.name)) {
-			return true;
+			System.out.println("이미 저장된 데이터입니다.");
+			System.out.println("덮어쓸까요? Y(y)/N(n)");
+			//String an = sc.nextLine();
+			String an = sc.nextLine();
+			
+			if(an.equals("n")|| an.equals("N")) return true;
+				
 		}
-		else {
-			return false;
-		}
+		return false;
+		
 	}
 }

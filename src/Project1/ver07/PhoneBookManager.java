@@ -72,9 +72,13 @@ Scanner sc = new Scanner(System.in);
 		String findName = sc.nextLine();
 		sc.nextLine();
 		boolean isFind = false;
-		for(int i = 0; i<hashSet.size();i++) {
-			if(findName.equals(per.name)) {
-				per.showInfo();
+		
+		Iterator<PhoneInfo>it = hashSet.iterator();
+
+		while(it.hasNext()){
+			PhoneInfo pi = it.next();
+			if(findName.equals(pi.name)) {
+				pi.showInfo();
 				isFind = true;
 				System.out.println("데이터 검색이 완료되었습니다.");
 			}
@@ -89,23 +93,13 @@ Scanner sc = new Scanner(System.in);
 		System.out.println("삭제할 이름을 입력하세요: ");
 		String findName = sc.nextLine();
 		int deleteIndex = -1;
-		/*
-		for(int i = 0; i< hashSet.size(); i++) {
-			if(findName.equals(per.name)) {
-			    per = null;
-				deleteIndex = i;
-				numOfPerson--;
-			}
-		}
+		Iterator<PhoneInfo>it = hashSet.iterator();
+		
+		
 		if(deleteIndex == -1) {
 			System.out.println("삭제할 정보가 없습니다.");
 		}
-		else {
-			for(int i = deleteIndex; i<hashSet.size();i++) {
-				per[i] = per[i+1];
-			}
-			System.out.println("데이터 "+ deleteIndex +"가 삭제되었습니다.");
-		}*/
+		
 	}
 
 	public void dataAllshow() {	
