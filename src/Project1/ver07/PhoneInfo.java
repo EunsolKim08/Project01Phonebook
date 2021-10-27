@@ -11,41 +11,6 @@ import java.util.Scanner;
  즉 동일한 이름을 입력하는 경우라면 덮어쓸지 여부를 물어본후 처리한다.
 
  */
-class PhoneSchoolInfo extends PhoneInfo{
-	String major;
-	int grade;
-	
-	public PhoneSchoolInfo(String name, String phoneNumber, String major, int grade) {
-		super(name, phoneNumber);
-		this.major = major;
-		this.grade = grade;
-	}
-	@Override
-	public void showInfo() {
-		System.out.println("이름: "+ name);
-		System.out.println("전화번호: "+ phoneNumber);
-		System.out.println("전공: " + major);
-		System.out.println("학년: "+grade);
-		
-	}
-}
-class PhoneCompanyInfo extends PhoneInfo{
-
-	String companyName;
-	
-	public PhoneCompanyInfo(String name, String phoneNumber, String companyName) {
-		super(name, phoneNumber);
-		this.companyName = companyName;
-	}
-	@Override
-	public void showInfo() {
-		System.out.println("이름: "+ name);
-		System.out.println("전화번호: "+ phoneNumber);
-		System.out.println("회사: "+ companyName);
-	}
-	
-}
-
 public class PhoneInfo  {
 	String name;
 	String phoneNumber;
