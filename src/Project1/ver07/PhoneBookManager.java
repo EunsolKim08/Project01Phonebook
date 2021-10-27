@@ -12,9 +12,11 @@ Scanner sc = new Scanner(System.in);
 	int numOfPerson = 0;
 	
 	PhoneInfo per;
+	
 	public PhoneBookManager() {
+		
 	}
-
+	
 	
 	public void dataInput() {
 		int choice;
@@ -26,24 +28,30 @@ Scanner sc = new Scanner(System.in);
 		switch(choice) {
 		 case Manager.NORMAL:{
 			 System.out.print("이름: "); 
-			 String name = sc.nextLine();
+			 String name1 = sc.nextLine();
 			 System.out.print("전화번호: ");
 			 String phoneNumber= sc.nextLine();	
-			  per = new PhoneInfo(name,phoneNumber);
+			 
+			  per = new PhoneInfo(name1,phoneNumber);
+			 
 			  hashSet.add(per);
+			 
 			System.out.println("데이터입력이 완료되었습니다.");
 			 break;
 		 }
 		 case Manager.SCHOOLMATE:
 			 System.out.print("이름: "); 
-			 String name = sc.nextLine();
+			 String name2 = sc.nextLine();
 			 System.out.print("전화번호: ");
 			 String phoneNumber= sc.nextLine();
 			 System.out.print("전공: ");
 			 String major = sc.nextLine();
 			 System.out.print("학년: ");
 			 int grade= sc.nextInt();
-			 per = new PhoneSchoolInfo(name,phoneNumber,major,grade);
+			 
+			 
+			 per = new PhoneSchoolInfo(name2,phoneNumber,major,grade);
+			 
 			 hashSet.add(per);
 			 System.out.println("데이터입력이 완료되었습니다.");
 			 break;
@@ -55,11 +63,14 @@ Scanner sc = new Scanner(System.in);
 			 String phoneNumber3= sc.nextLine();
 			 System.out.print("회사: ");
 			 String companyName = sc.nextLine();
+			
+			 
 			 per = new PhoneCompanyInfo(name3,phoneNumber3,companyName);
-			 System.out.println("데이터입력이 완료되었습니다.");
 			 hashSet.add(per);
+			 System.out.println("데이터입력이 완료되었습니다.");
+			 
 			 break;
-		 
+			
 		 default:
 			 System.out.println("잘못입력하셨습니다.");
 			 return;
@@ -94,6 +105,15 @@ Scanner sc = new Scanner(System.in);
 		String findName = sc.nextLine();
 		int deleteIndex = -1;
 		Iterator<PhoneInfo>it = hashSet.iterator();
+		
+		while(it.hasNext()) {
+			PhoneInfo pi = it.next();
+			if(findName.equals(pi.name)) {
+				hashSet.remove(pi);
+				System.out.println("삭제되었습니다..");
+				deleteIndex =1;
+			}
+		}
 		
 		
 		if(deleteIndex == -1) {

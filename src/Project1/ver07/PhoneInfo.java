@@ -1,5 +1,7 @@
 package Project1.ver07;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /*
@@ -88,7 +90,8 @@ public class PhoneInfo  {
 	public boolean equals(Object obj) {
 		
 		PhoneInfo pi = (PhoneInfo)obj;
-	
+		HashSet<PhoneInfo> hashSet = new HashSet<PhoneInfo>(); 
+		
 		//학번에 대한 비교를 진행
 		if(pi.name.equals(this.name)) {
 			System.out.println("이미 저장된 데이터입니다.");
@@ -97,8 +100,13 @@ public class PhoneInfo  {
 			String an = sc.nextLine();
 			
 			if(an.equals("n")|| an.equals("N")) return true;
+			if(an.equals("y")|| an.equals("Y"))	{
 				
-		}
+				return false;
+				}
+			}
+				
+		
 		return false;
 		
 	}
