@@ -8,13 +8,6 @@ import java.util.HashSet;
 public class AutoSaverT extends Thread {
 	HashSet<PhoneInfo> hashset = new HashSet<PhoneInfo>(); 
 	
-	public AutoSaverT() throws Exception {
-		
-		
-		
-	
-	}
-
 	@Override
 	public void run() {
 		while(true) {
@@ -22,6 +15,7 @@ public class AutoSaverT extends Thread {
 			try {
 				PrintWriter out = new PrintWriter(
 						new FileWriter("src/Project1/ver08/AutoSaveBook.txt"));
+				
 				sleep(3000);
 				System.out.println("3초마다 자동저장!!");
 				

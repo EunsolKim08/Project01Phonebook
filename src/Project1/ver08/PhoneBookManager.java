@@ -3,8 +3,10 @@ package Project1.ver08;
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -29,7 +31,7 @@ Scanner sc = new Scanner(System.in);
 	int numOfPerson = 0;
 	
 	PhoneInfo per;
-	
+	AutoSaverT ast = null;
 	public PhoneBookManager() {
 		readInfo();
 	}
@@ -187,6 +189,7 @@ Scanner sc = new Scanner(System.in);
 		}
 		catch(Exception e) {
 			System.out.println("휴대폰 정보 직렬화시 예외발생");
+			e.printStackTrace();
 		}
 	}
 	public void readInfo() {
@@ -218,6 +221,15 @@ Scanner sc = new Scanner(System.in);
 		
 		AutoSaverT dt= null;
 		if(ch == 1) {
+			/*
+			if(dt == null || dt.isAlive() == false) {
+				dt= new AutoSaverT ();
+				dt.setDaemon(true);
+				dt.start();
+				System.out.println("자동저장을 시작합니다.");
+			}*/
+				
+			
 			System.out.println("자동저장을 시작합니다.");
 			try {
 				dt.isAlive();
@@ -232,9 +244,10 @@ Scanner sc = new Scanner(System.in);
 		if(ch == 2) {
 			dt.interrupt();
 			System.out.println("자동저장을 종료합니다.");
+			return;
 		}
 	}
-
+	
 	public void programEnd() {
 		System.out.println("프로그램이 종료됩니다.");
 	}
