@@ -175,12 +175,15 @@ Scanner sc = new Scanner(System.in);
 	public void saveInfo() {
 		try{
 			ObjectOutputStream out = new ObjectOutputStream
-					(new FileOutputStream("src/Project1/PhoneBook2.obj"));
-			
+					(new FileOutputStream("src/Project1/ver08/PhoneBook2.obj"));
+		
 			for(PhoneInfo phi1 : hashSet) {
 				out.writeObject(phi1);
 			}
+
 			System.out.println("out write실행중");
+			out.close();
+			
 		}
 		catch(Exception e) {
 			System.out.println("휴대폰 정보 직렬화시 예외발생");
@@ -189,12 +192,15 @@ Scanner sc = new Scanner(System.in);
 	public void readInfo() {
 		try {
 			ObjectInputStream in = new ObjectInputStream
-					(new FileInputStream("src/Project1.ver08/PhoneBook.obj"));
+					(new FileInputStream("src/Project1/ver08/PhoneBook.obj"));
 			
 			while(true) {
 				PhoneInfo phil = (PhoneInfo)in.readObject();
 				hashSet.add(phil);
-				if(phil == null )break;
+				if(phil == null ) {
+					in.close();
+					break;
+				}
 			}
 		}
 		catch(Exception e) {
@@ -203,27 +209,26 @@ Scanner sc = new Scanner(System.in);
 		System.out.println("친구 정보가 복원되었습니다.");
 	}
 	
-	public void dataSave() {
-		AutoSaverT dt = null;
+	public void dataSave() throws Exception {
+		
 		System.out.println("저장옵션을 선택하세요. ");
 		System.out.println("1. 자동저장On 2.자동저장Off");
 		System.out.printf("선택: ");
 		int ch = sc.nextInt();
-		System.out.println("자동저장을 시작합니다.");
 		
+		AutoSaverT dt= null;
 		if(ch == 1) {
-			
-			if(dt== null && dt.isAlive() == false) {
+			System.out.println("자동저장을 시작합니다.");
+			try {
+				dt.isAlive();
+			}
+			catch(Exception e){
 				dt= new AutoSaverT ();
-				dt.run();
-			}
-			
-			else if(dt.isAlive() == true) {
-				System.out.println("자동저장이 이미 실행중입니다.");
-			}
-			
-			
+				dt.setDaemon(true);
+				dt.start();
+			}	
 		}
+		
 		if(ch == 2) {
 			dt.interrupt();
 			System.out.println("자동저장을 종료합니다.");
